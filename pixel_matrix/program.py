@@ -20,6 +20,7 @@ class Program(ABC):
 
 
     def execute(self):
+        """ Start the Program Running """
         run = True
         while run:
             for event in pygame.event.get():
@@ -29,3 +30,20 @@ class Program(ABC):
             self.loop()
 
         self.matrix.quit()
+
+
+    @classmethod
+    def exec_func(cls, program_func, **kwargs):
+        """ Execute a function as a Pixel Matrix Program """
+        class FuncProgram(Program):
+            def loop(self):
+                program_func(self.matrix)
+
+
+        program = FuncProgram(**kwargs)
+        program.execute()
+
+
+
+
+#
