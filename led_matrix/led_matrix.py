@@ -31,6 +31,9 @@ class LEDMatrix:
             led_spacing (int): The spacing between LEDs (in pixels). Default: 0
             led_shape (str): LED_SHAPE_(SQUARE|CIRCLE). Default: SQUARE
 
+        NOTE: The width & height of the GUI Window is dependent upon the LED
+              size, shape and spacing.
+
         NOTE: LED Size == 1 for any shape LED => Single screen pixel
         """
         pygame.init()
@@ -80,6 +83,14 @@ class LEDMatrix:
 
 
     def set_led(self, led_x, led_y, color):
+        """
+        Set the LED at the given location to the given color
+
+        Args:
+            led_x (int): X coordinate of the LED
+            led_y (int): Y coordinate of the LED
+            color (pygame.Color): The color to set the LED to
+        """
         if self.__led_size > 1:
             match self.__led_shape:
                 case self.LED_SHAPE_CIRCLE:
@@ -111,8 +122,10 @@ class LEDMatrix:
 
 
     def update(self):
+        """ Update the LED Matrix with the latest changes """
         pygame.display.flip()
 
 
     def quit(self):
+        """ Quit the LED Matrix simulation and exit """
         pygame.quit()
