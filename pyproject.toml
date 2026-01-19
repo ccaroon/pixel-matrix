@@ -16,3 +16,6 @@ exclude = ["/docs"]
 
 [tool.hatch.build.targets.wheel]
 packages = ["led_matrix"]
+
+[tool.ruff.lint]
+ignore = ["S311"]

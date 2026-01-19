@@ -1,5 +1,7 @@
-import pygame
 import random
+
+import pygame
+
 
 class Color:
     @classmethod
@@ -12,4 +14,4 @@ class Color:
         g = random.randint(0, 255)
         b = random.randint(0, 255)
 
-        return cls.make((r,g,b))
+        return cls.make((r, g, b))

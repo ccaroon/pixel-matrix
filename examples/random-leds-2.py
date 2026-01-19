@@ -1,8 +1,9 @@
 #!/usr/bin/env python
+import random
+
 from led_matrix.color import Color
 from led_matrix.program import Program
 
-import random
 
 def random_leds(matrix):
     """
@@ -14,12 +15,12 @@ def random_leds(matrix):
         matrix (LEDMatrix): The LEDMatrix to be controlled. Automatically
                             created by Program.
     """
-    x = random.randint(0, matrix.width)
-    y = random.randint(0, matrix.height)
+    row = random.randint(0, matrix.height - 1)
+    col = random.randint(0, matrix.width - 1)
 
     color = Color.random()
 
-    matrix.set_led(x, y, color)
+    matrix.led_on(row, col, color)
     matrix.update()
 
 
@@ -27,6 +28,7 @@ Program.exec_func(
     # The function to use as the event loop
     random_leds,
     # Params that are passed to the LEDMatrix constructor
-    width=1024, height=1024,
-    title="Random LEDs #2"
+    width=1024,
+    height=1024,
+    title="Random LEDs #2",
 )

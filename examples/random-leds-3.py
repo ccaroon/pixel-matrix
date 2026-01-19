@@ -1,8 +1,9 @@
 #!/usr/bin/env python
+import random
+
 from led_matrix.color import Color
 from led_matrix.program import Program
 
-import random
 
 class RandomLEDs(Program):
     """
@@ -17,25 +18,22 @@ class RandomLEDs(Program):
         your own arguments needed to initialize your Program. Arguments specific
         to LEDMatrix will be removed from the kwargs dict.
     """
+
     def __init__(self, **kwargs):
         # Remember to all super().__init__()
         super().__init__(**kwargs)
 
-
     # Automatically called by the event loop
     def loop(self):
-        x = random.randint(0, self.matrix.width)
-        y = random.randint(0, self.matrix.height)
+        row = random.randint(0, self.matrix.height - 1)
+        col = random.randint(0, self.matrix.width - 1)
 
         color = Color.random()
 
-        self.matrix.set_led(x, y, color)
+        self.matrix.led_on(row, col, color)
         self.matrix.update()
 
 
 if __name__ == "__main__":
-    program = RandomLEDs(
-        title = "Random LEDs #3",
-        width = 1920, height = 1080
-    )
+    program = RandomLEDs(title="Random LEDs #3", width=1920, height=1080)
     program.execute()
